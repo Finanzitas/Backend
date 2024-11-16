@@ -14,11 +14,13 @@ public class CreatePaymentDocumentCommandFromResourceAssembler {
                 resource.divisa(),
                 resource.montoFinal(),
                 resource.tasaEfectiva(),
+                resource.fechaEmision(),
                 resource.fechaVencimiento(),
                 resource.tasaDescuento(),
                 resource.montoDescuento(),
                 resource.descripcion(),
-                resource.estado()
+                resource.estado(),
+                resource.tipoInteres() // Nuevo atributo
         );
     }
 }

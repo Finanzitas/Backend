@@ -1,5 +1,7 @@
 package upc.efinance.documentos.domain.model.commands;
 
+import java.time.LocalDate;
+
 public record CreatePaymentDocumentCommand(
         String dniCliente,
         Long idCartera,
@@ -9,12 +11,13 @@ public record CreatePaymentDocumentCommand(
         String divisa,
         float montoFinal,
         float tasaEfectiva,
+        java.time.LocalDate fechaEmision,
         java.time.LocalDate fechaVencimiento,
         float tasaDescuento,
         float montoDescuento,
         String descripcion,
-        String estado
-                                           ) {
+        String estado,
+        String tipoInteres) {
 
     public CreatePaymentDocumentCommand {
         if ((dniCliente == null) || (idCartera == null)) {
@@ -55,6 +58,8 @@ public record CreatePaymentDocumentCommand(
             throw new IllegalArgumentException("estado no puede ser negativo");
         }
     }
+
+
 
 }
 

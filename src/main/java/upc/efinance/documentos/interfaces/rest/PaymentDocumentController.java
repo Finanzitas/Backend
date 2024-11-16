@@ -1,21 +1,20 @@
 package upc.efinance.documentos.interfaces.rest;
 
 import upc.efinance.documentos.domain.model.aggregates.PaymentDocument;
-import upc.efinance.documentos.domain.model.commands.UpdatePaymentDocumentCommand;
 import upc.efinance.documentos.domain.model.queries.GetPaymentDocumentByIdDocumentoQuery;
 import upc.efinance.documentos.domain.model.queries.GetPaymentDocumentsByDniClienteQuery;
-import upc.efinance.documentos.domain.services.PaymentDocumentQueryService;
 import upc.efinance.documentos.domain.services.PaymentDocumentCommanService;
+import upc.efinance.documentos.domain.services.PaymentDocumentQueryService;
 import upc.efinance.documentos.interfaces.rest.resources.CreatePaymentDocumentResource;
 import upc.efinance.documentos.interfaces.rest.resources.PaymentDocumentResource;
 import upc.efinance.documentos.interfaces.rest.transform.CreatePaymentDocumentCommandFromResourceAssembler;
 import upc.efinance.documentos.interfaces.rest.transform.PaymentDocumentResourceFromEntityAssembler;
+import upc.efinance.documentos.interfaces.rest.transform.UpdatePaymentDocumentCommandFromResourceAssembler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Map;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -35,25 +34,16 @@ public class PaymentDocumentController {
         Optional<PaymentDocument> paymentDocument = paymentDocumentCommanService
                 .handle(CreatePaymentDocumentCommandFromResourceAssembler.toCommandFromResource(resource));
         return paymentDocument.map(source ->
-                new ResponseEntity<>(PaymentDocumentResourceFromEntityAssembler.toPaymentDocumentResource(source),CREATED))
+                        new ResponseEntity<>(PaymentDocumentResourceFromEntityAssembler.toPaymentDocumentResource(source), CREATED))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
-
     }
 
     @GetMapping("{idDocument}")
     public ResponseEntity<PaymentDocumentResource> getPaymentDocument(@PathVariable Long idDocument) {
         Optional<PaymentDocument> paymentDocument = paymentDocumentQueryService.handle(new GetPaymentDocumentByIdDocumentoQuery(idDocument));
-        return paymentDocument.map(source -> ResponseEntity.ok(PaymentDocumentResourceFromEntityAssembler.toPaymentDocumentResource(source)))
-                .orElseGet(()->ResponseEntity.notFound().build());
-    }
-
-    /*No se para que sirve pero el profe una ves me dijo que era necesario*/
-    @GetMapping
-    public ResponseEntity<?> getAllPaymentDocuments(@RequestParam Map<String, String> params) {
-        if(params.containsKey("divisa")){
-            return getPaymentDocument(Long.parseLong(params.get("divisa")));
-        }
-        return ResponseEntity.badRequest().build();
+        return paymentDocument.map(source ->
+                        ResponseEntity.ok(PaymentDocumentResourceFromEntityAssembler.toPaymentDocumentResource(source)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/dni/{dniCliente}")
@@ -68,50 +58,20 @@ public class PaymentDocumentController {
         return ResponseEntity.ok(resources);
     }
 
-
     @PutMapping("{idDocument}")
     public ResponseEntity<PaymentDocumentResource> updatePaymentDocument(
             @PathVariable Long idDocument,
             @RequestBody CreatePaymentDocumentResource resource) {
-        // Convertir el recurso recibido en un comando de actualización
-        UpdatePaymentDocumentCommand command = new UpdatePaymentDocumentCommand(
-                idDocument,
-                resource.dniCliente(),
-                resource.idCartera(),
-                resource.tipoDocumento(),
-                resource.capital(),
-                resource.interesGenerado(),
-                resource.divisa(),
-                resource.montoFinal(),
-                resource.tasaEfectiva(),
-                resource.fechaVencimiento(),
-                resource.tasaDescuento(),
-                resource.montoDescuento(),
-                resource.descripcion(),
-                resource.estado()
-        );
-
-        // Manejar la actualización a través del servicio
+        var command = UpdatePaymentDocumentCommandFromResourceAssembler.toCommandFromResource(idDocument, resource);
         Optional<PaymentDocument> updatedDocument = paymentDocumentCommanService.update(command);
         return updatedDocument.map(source ->
                         ResponseEntity.ok(PaymentDocumentResourceFromEntityAssembler.toPaymentDocumentResource(source)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
-
-    @DeleteMapping("{idDocument}")  // Nueva ruta para eliminar un documento
+    @DeleteMapping("{idDocument}")
     public ResponseEntity<Void> deletePaymentDocument(@PathVariable Long idDocument) {
-        Optional<PaymentDocument> paymentDocument = paymentDocumentQueryService.handle(new GetPaymentDocumentByIdDocumentoQuery(idDocument));
-        if (paymentDocument.isPresent()) {
-            paymentDocumentCommanService.deleteById(idDocument);
-            return ResponseEntity.noContent().build();  // Respuesta 204 No Content al eliminar
-        } else {
-            return ResponseEntity.notFound().build();  // Respuesta 404 si el documento no existe
-        }
+        paymentDocumentCommanService.deleteById(idDocument);
+        return ResponseEntity.noContent().build();
     }
-
 }
-
-
-

@@ -59,9 +59,10 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
     @Setter // Agregar Setter
     private float tasaEfectiva;
 
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
+
+    @Column(nullable = false)
     @Getter
+    @Setter
     private LocalDate fechaEmision;
 
     @Column(nullable = false, updatable = true)
@@ -89,6 +90,11 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
     @Setter
     private String estado;
 
+    @Column(nullable = false)
+    @Getter
+    @Setter
+    private String tipoInteres;
+
     // Constructor vacío
     protected PaymentDocument() {
         this.dniCliente = Strings.EMPTY;
@@ -99,11 +105,13 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
         this.interesGenerado = 0.0f;
         this.montoFinal = 0.0f;
         this.tasaEfectiva = 0.0f;
+        this.fechaEmision = LocalDate.now();
         this.fechaVencimiento = LocalDate.now();
         this.tasaDescuento = 0.0f;
         this.montoDescuento = 0.0f;
         this.descripcion = Strings.EMPTY;
         this.estado = Strings.EMPTY;
+        this.tipoInteres = Strings.EMPTY;
     }
 
     // Constructor con comando
@@ -116,9 +124,13 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
         this.interesGenerado = command.interesGenerado();
         this.montoFinal = command.montoFinal();
         this.tasaEfectiva = command.tasaEfectiva();
+        this.fechaEmision = command.fechaEmision();
         this.fechaVencimiento = command.fechaVencimiento();
         this.tasaDescuento = command.tasaDescuento();
         this.descripcion = command.descripcion();
         this.estado = command.estado();
+        this.tipoInteres=command.tipoInteres();
     }
+
+
 }
