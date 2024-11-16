@@ -6,7 +6,6 @@ import upc.efinance.documentos.domain.model.commands.UpdatePaymentDocumentComman
 
 import java.util.Optional;
 
-
 public interface PaymentDocumentCommanService {
     Optional<PaymentDocument> handle(CreatePaymentDocumentCommand command);
     Optional<PaymentDocument> update(UpdatePaymentDocumentCommand command);

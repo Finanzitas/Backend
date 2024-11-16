@@ -7,7 +7,6 @@ import upc.efinance.documentos.domain.model.queries.GetPaymentDocumentsByDniClie
 import java.util.List;
 import java.util.Optional;
 
-
 public interface PaymentDocumentQueryService {
     Optional<PaymentDocument> handle(GetPaymentDocumentByIdDocumentoQuery query);
     List<PaymentDocument> handle(GetPaymentDocumentsByDniClienteQuery query);

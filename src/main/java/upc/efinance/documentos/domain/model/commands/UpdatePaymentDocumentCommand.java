@@ -12,12 +12,13 @@ public record UpdatePaymentDocumentCommand(
         String divisa,
         float montoFinal,
         float tasaEfectiva,
+        LocalDate fechaEmision,
         LocalDate fechaVencimiento,
         float tasaDescuento,
         float montoDescuento,
         String descripcion,
-        String estado
-) {
+        String estado,
+        String tipoInteres) {
     public UpdatePaymentDocumentCommand {
         if (idDocumento == null || idDocumento <= 0) {
             throw new IllegalArgumentException("El idDocumento no puede ser nulo o inválido");
@@ -34,4 +35,6 @@ public record UpdatePaymentDocumentCommand(
             throw new IllegalArgumentException("Los valores no pueden ser negativos");
         }
     }
+
+
 }
