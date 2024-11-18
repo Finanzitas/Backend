@@ -3,6 +3,7 @@ package upc.efinance.carteras.interfaces.rest.resources;
 import java.time.LocalDate;
 
 public record CreateCarteraResource( String dniCliente,
+                                     String nombreCartera,
                                      LocalDate fechaInicial,
                                      LocalDate fechaFinal,
                                      int diasTranscurridos,

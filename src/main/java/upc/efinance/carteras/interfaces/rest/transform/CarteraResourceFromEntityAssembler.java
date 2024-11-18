@@ -8,6 +8,7 @@ public class CarteraResourceFromEntityAssembler {
     public static CarteraResource toCarteraResource(Cartera entity) {
         return new CarteraResource(
                 entity.getDniCliente(),
+                entity.getNombreCartera(),
                 entity.getFechaInicial(),
                 entity.getFechaFinal(),
                 entity.getDiasTranscurridos(),

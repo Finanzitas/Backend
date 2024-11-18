@@ -33,6 +33,7 @@ public class CarteraCommandServiceImpl implements CarteraCommandService {
     public Optional<Cartera> updateCartera(UpdateCarteraCommand command) {
         return carteraRepository.findById(command.idCartera()).map(cartera -> {
             cartera.setDniCliente(command.dniCliente());
+            cartera.setNombreCartera(command.nombreCartera());
             cartera.setFechaInicial(command.fechaInicial());
             cartera.setFechaFinal(command.fechaFinal());
             cartera.setDiasTranscurridos(command.diasTranscurridos());

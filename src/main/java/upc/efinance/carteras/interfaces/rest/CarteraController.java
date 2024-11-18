@@ -59,6 +59,7 @@ public class CarteraController {
         command = new UpdateCarteraCommand(
                 idCartera, // Incluir idCartera aquí
                 command.dniCliente(),
+                command.nombreCartera(),
                 command.fechaInicial(),
                 command.fechaFinal(),
                 command.diasTranscurridos(),
