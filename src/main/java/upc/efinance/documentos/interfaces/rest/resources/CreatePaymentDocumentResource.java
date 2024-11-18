@@ -17,5 +17,6 @@ public record CreatePaymentDocumentResource(
         float montoDescuento,
         String descripcion,
         String estado,
-        String tipoInteres // Nuevo atributo
+        String tipoInteres,
+        float tcea
 ) {}

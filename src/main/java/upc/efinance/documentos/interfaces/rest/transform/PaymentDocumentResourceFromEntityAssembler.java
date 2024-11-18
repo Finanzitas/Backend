@@ -21,7 +21,8 @@ public class PaymentDocumentResourceFromEntityAssembler {
                 entity.getMontoDescuento(),
                 entity.getDescripcion(),
                 entity.getEstado(),
-                entity.getTipoInteres()
+                entity.getTipoInteres(),
+                entity.getTcea()
         );
     }
 }
