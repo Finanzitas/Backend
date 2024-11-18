@@ -3,7 +3,7 @@ package upc.efinance.documentos.interfaces.rest.resources;
 import java.time.LocalDate;
 
 public record PaymentDocumentResource(
-        String dniCliente,
+        Long idDocumento, String dniCliente,
         Long idCartera,
         String tipoDocumento,
         float capital,
