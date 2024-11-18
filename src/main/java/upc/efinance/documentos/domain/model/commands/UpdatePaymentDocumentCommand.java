@@ -18,7 +18,8 @@ public record UpdatePaymentDocumentCommand(
         float montoDescuento,
         String descripcion,
         String estado,
-        String tipoInteres) {
+        String tipoInteres,
+        float tcea) {
     public UpdatePaymentDocumentCommand {
         if (idDocumento == null || idDocumento <= 0) {
             throw new IllegalArgumentException("El idDocumento no puede ser nulo o inválido");

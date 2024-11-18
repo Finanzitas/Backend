@@ -21,7 +21,8 @@ public class UpdatePaymentDocumentCommandFromResourceAssembler {
                 resource.montoDescuento(),
                 resource.descripcion(),
                 resource.estado(),
-                resource.tipoInteres() // Nuevo atributo
+                resource.tipoInteres(),
+                resource.tcea()
         );
     }
 }

@@ -17,7 +17,8 @@ public record CreatePaymentDocumentCommand(
         float montoDescuento,
         String descripcion,
         String estado,
-        String tipoInteres) {
+        String tipoInteres,
+        float tcea) {
 
     public CreatePaymentDocumentCommand {
         if ((dniCliente == null) || (idCartera == null)) {

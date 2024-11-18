@@ -95,6 +95,11 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
     @Setter
     private String tipoInteres;
 
+    @Column(nullable = false)
+    @Getter
+    @Setter
+    private float tcea;
+
     // Constructor vacío
     protected PaymentDocument() {
         this.dniCliente = Strings.EMPTY;
@@ -112,6 +117,7 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
         this.descripcion = Strings.EMPTY;
         this.estado = Strings.EMPTY;
         this.tipoInteres = Strings.EMPTY;
+        this.tcea = 0.0f;
     }
 
     // Constructor con comando
@@ -130,6 +136,7 @@ public class PaymentDocument extends AbstractAggregateRoot<PaymentDocument> {
         this.descripcion = command.descripcion();
         this.estado = command.estado();
         this.tipoInteres=command.tipoInteres();
+        this.tcea=command.tcea();
     }
 
 
