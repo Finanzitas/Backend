@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class Cartera extends AbstractAggregateRoot<Cartera> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private long idCartera;
 
     @Column(nullable = false, updatable = true)

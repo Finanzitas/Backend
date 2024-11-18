@@ -40,11 +40,14 @@ public class ReporteController {
     }
 
     @GetMapping("{idReporte}")
-    public ResponseEntity<?> getAllReporte(@RequestParam Long idReporte){
+    public ResponseEntity<?> getAllReporte(@PathVariable Long idReporte) {
         Optional<Reporte> reporte = reporteQueryService.handle(new GetReportesByIdReporteQuery(idReporte));
-        return reporte.map( source ->ResponseEntity.ok(ReporteResourceFromEntityAssembler.toResourceFromEntity(source)))
-                .orElseGet(()->ResponseEntity.notFound().build());
+        return reporte.map(source ->
+                ResponseEntity.ok(ReporteResourceFromEntityAssembler.toResourceFromEntity(source))
+        ).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+
 
     @PutMapping("{idReporte}")
     public ResponseEntity<ReporteResource> updateReporte(@PathVariable Long idReporte,

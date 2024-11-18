@@ -6,6 +6,7 @@ import upc.efinance.documentos.interfaces.rest.resources.PaymentDocumentResource
 public class PaymentDocumentResourceFromEntityAssembler {
     public static PaymentDocumentResource toPaymentDocumentResource(PaymentDocument entity) {
         return new PaymentDocumentResource(
+                entity.getIdDocumento(),
                 entity.getDniCliente(),
                 entity.getIdCartera(),
                 entity.getTipoDocumento(),

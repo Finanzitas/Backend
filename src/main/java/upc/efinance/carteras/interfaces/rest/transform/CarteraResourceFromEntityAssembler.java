@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public class CarteraResourceFromEntityAssembler {
     public static CarteraResource toCarteraResource(Cartera entity) {
         return new CarteraResource(
+                entity.getIdCartera(),
                 entity.getDniCliente(),
                 entity.getNombreCartera(),
                 entity.getFechaInicial(),

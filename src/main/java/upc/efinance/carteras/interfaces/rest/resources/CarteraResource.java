@@ -3,7 +3,7 @@ package upc.efinance.carteras.interfaces.rest.resources;
 import java.time.LocalDate;
 
 public record CarteraResource(
-        String dniCliente,
+        long idCartera, String dniCliente,
         String nombreCartera,
         LocalDate fechaInicial,
         LocalDate fechaFinal,
