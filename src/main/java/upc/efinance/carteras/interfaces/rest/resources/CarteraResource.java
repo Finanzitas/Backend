@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record CarteraResource(
         String dniCliente,
+        String nombreCartera,
         LocalDate fechaInicial,
         LocalDate fechaFinal,
         int diasTranscurridos,

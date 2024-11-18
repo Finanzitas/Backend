@@ -3,6 +3,7 @@ package upc.efinance.carteras.domain.model.commands;
 public record UpdateCarteraCommand(
         Long idCartera,
         String dniCliente,
+        String nombreCartera,
         java.time.LocalDate fechaInicial,
         java.time.LocalDate fechaFinal,
         int diasTranscurridos,

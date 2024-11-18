@@ -2,6 +2,7 @@ package upc.efinance.carteras.domain.model.commands;
 
 public record CreateCarteraCommand(
         String dniCliente,
+        String nombreCartera,
         java.time.LocalDate fechaInicial,
         java.time.LocalDate fechaFinal,
         int diasTranscurridos,

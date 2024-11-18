@@ -19,6 +19,11 @@ public class Cartera extends AbstractAggregateRoot<Cartera> {
     @Column(nullable = false, updatable = true)
     @Getter
     @Setter
+    private String nombreCartera;
+
+    @Column(nullable = false, updatable = true)
+    @Getter
+    @Setter
     private String dniCliente;
 
     @Column(nullable = false, updatable = true)
@@ -65,6 +70,7 @@ public class Cartera extends AbstractAggregateRoot<Cartera> {
     //Constructor vacío
     protected Cartera() {
         this.dniCliente = "";
+        this.nombreCartera="";
         this.fechaInicial = LocalDate.now();
         this.fechaFinal = LocalDate.now();
         this.diasTranscurridos = 0;
@@ -78,6 +84,7 @@ public class Cartera extends AbstractAggregateRoot<Cartera> {
     // Constructor con comando
     public Cartera(CreateCarteraCommand command) {
         this.dniCliente= command.dniCliente();
+        this.nombreCartera=command.nombreCartera();
         this.fechaInicial = command.fechaInicial();
         this.fechaFinal = command.fechaFinal();
         this.diasTranscurridos = command.diasTranscurridos();

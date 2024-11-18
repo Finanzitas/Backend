@@ -9,6 +9,7 @@ public class CreateCarteraCommandFromResourceAssembler {
     public static CreateCarteraCommand toCommandFromResource(CreateCarteraResource resource) {
         return new CreateCarteraCommand(
                 resource.dniCliente(),
+                resource.nombreCartera(),
                 resource.fechaInicial(),
                 resource.fechaFinal(),
                 resource.diasTranscurridos(),
