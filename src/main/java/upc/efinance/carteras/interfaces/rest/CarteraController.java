@@ -57,7 +57,7 @@ public class CarteraController {
     public ResponseEntity<CarteraResource> updateCartera(@PathVariable Long idCartera, @RequestBody UpdateCarteraCommand command) {
         // Crear un nuevo comando incluyendo el idCartera
         command = new UpdateCarteraCommand(
-                idCartera, // Incluir idCartera aquí
+                idCartera,
                 command.dniCliente(),
                 command.nombreCartera(),
                 command.fechaInicial(),
