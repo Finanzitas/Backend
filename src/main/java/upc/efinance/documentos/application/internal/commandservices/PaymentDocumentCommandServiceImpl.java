@@ -43,7 +43,7 @@ public class PaymentDocumentCommandServiceImpl implements PaymentDocumentCommanS
             existingDocument.setMontoDescuento(command.montoDescuento());
             existingDocument.setDescripcion(command.descripcion());
             existingDocument.setEstado(command.estado());
-            existingDocument.setEstado(command.tipoInteres());
+            existingDocument.setTipoInteres(command.tipoInteres());
 
 
             paymentDocumentRepository.save(existingDocument);
