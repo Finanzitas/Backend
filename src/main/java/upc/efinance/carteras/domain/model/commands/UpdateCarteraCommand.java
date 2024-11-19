@@ -1,7 +1,7 @@
 package upc.efinance.carteras.domain.model.commands;
 
 public record UpdateCarteraCommand(
-        Long idCartera,
+Long idCartera,
         String dniCliente,
         String nombreCartera,
         java.time.LocalDate fechaInicial,
@@ -14,9 +14,7 @@ public record UpdateCarteraCommand(
         String banco
 ) {
     public UpdateCarteraCommand {
-        if (idCartera == null || idCartera < 0) {
-            throw new IllegalArgumentException("Id cartera no puede ser nulo o negativo");
-        }
+
         if (dniCliente == null || dniCliente.isBlank()) {
             throw new IllegalArgumentException("DNI cliente no puede ser nulo");
         }
